@@ -15,8 +15,8 @@ const Menu = require("../models/Menu.model");
 
 //     const { _id } = req.params
 //     Menu
-//         .findByIdAndDelete(_id)
-//         .then(() => res.redirect("/usersadmin"))
+//         .findById(_id)
+//          .then((response) => res.json(response))
 //         .catch(err => next(err))
 
 // })
@@ -24,22 +24,8 @@ const Menu = require("../models/Menu.model");
 
 router.post("/", (req, res, next) => {
 
-    let menu = {
-        name: "menú 1",
-        days: [{
-            day: "Monday",
-            recipeBreakfastId: "b79327d05b8e5b838ad6cfd9576b30b6",
-            recipeLunchId: "b79327d05b8e5b838ad6cfd9576b30b6",
-            recipeDinnerId: "b79327d05b8e5b838ad6cfd9576b30b6"
-        },
-        {
-            day: "Tuesday",
-            recipeBreakfastId: "b79327d05b8e5b838ad6cfd9576b30b6",
-            recipeLunchId: "b79327d05b8e5b838ad6cfd9576b30b6",
-            recipeDinnerId: "b79327d05b8e5b838ad6cfd9576b30b6"
-        }
-        ]
-    }
+    const menu = req.body
+
     Menu
         .create(menu)
         .then((response) => res.json(response))

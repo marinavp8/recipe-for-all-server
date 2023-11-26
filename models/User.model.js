@@ -29,9 +29,6 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    likedRecipes: [{
-      type: String,
-    }]
   },
   {
     timestamps: true
