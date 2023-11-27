@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose")
 
 const menuSchema = new Schema(
     {
-        // userId: {
+        // ow: {
         //     userId: Schema.Types.ObjectId,
         //     ref: 'User'
         // },
