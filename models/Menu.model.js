@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const menuSchema = new Schema(
     {
@@ -25,8 +25,8 @@ const menuSchema = new Schema(
     {
         timestamps: true
     }
-);
+)
 
 const Menu = model("Menu", menuSchema);
 
-module.exports = Menu;
+module.exports = Menu
