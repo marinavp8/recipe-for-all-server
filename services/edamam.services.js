@@ -14,10 +14,11 @@ class EdamamService {
 
     }
 
-    getRecipes(q) {
+    getRecipes(ingredient) {
+
         return this.axiosApp.get("", {
             params: {
-                q: q,
+                q: ingredient,
                 type: "public",
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
@@ -32,6 +33,28 @@ class EdamamService {
                 type: "public",
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
+            }
+        })
+    }
+
+    getRecipebyMeal(mealType) {
+        return this.axiosApp.get('', {
+            params: {
+                type: "public",
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+                mealType: mealType
+            }
+        })
+    }
+
+    getRecipebyDiet(diet) {
+        return this.axiosApp.get('', {
+            params: {
+                type: "public",
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+                diet: diet
             }
         })
     }
