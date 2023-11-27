@@ -6,6 +6,10 @@ const cors = require("cors");
 const FRONTEND_URL = process.env.ORIGIN || "http://localhost:3000";
 
 module.exports = (app) => {
+
+  console.log('-----', FRONTEND_URL)
+
+
   app.set("trust proxy", 1);
 
   app.use(
