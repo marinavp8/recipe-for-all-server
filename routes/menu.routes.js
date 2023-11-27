@@ -1,25 +1,26 @@
-const express = require('express');
-const router = express.Router();
-const Menu = require("../models/Menu.model");
+const express = require('express')
+const router = express.Router()
+const Menu = require("../models/Menu.model")
 
 
-// router.get("/menu", (req, res, next) => {
-//     Menu
-//         .find()
-//         .then(data => res.render("users/admin", { user: data }))
-//         .catch(err => next(err))
-// })
+router.get("/getallmenus", (req, res, next) => {
+
+    Menu
+        .find()
+        .then((response) => res.json(response))
+        .catch(err => next(err))
+})
 
 
-// router.get("/menu/:_id", (req, res, next) => {
+router.get("/:_id", (req, res, next) => {
 
-//     const { _id } = req.params
-//     Menu
-//         .findById(_id)
-//          .then((response) => res.json(response))
-//         .catch(err => next(err))
+    const { _id } = req.params
+    Menu
+        .findById(_id)
+        .then((response) => res.json(response))
+        .catch(err => next(err))
 
-// })
+})
 
 
 router.post("/", (req, res, next) => {
