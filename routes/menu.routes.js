@@ -33,4 +33,26 @@ router.post("/", (req, res, next) => {
 
 })
 
+router.put("/updateMenu/:_id", (req, res, next) => {
+    const { _id } = req.params;
+    const { name } = req.body
+    console.log(_id)
+    console.log(req.body)
+
+    Menu
+        .findByIdAndUpdate(_id, { name }, { new: false })
+        .then(updatedMenu => res.json(updatedMenu))
+        .catch(err => next(err));
+})
+
+router.delete("/deleteMenu/:id", (req, res, next) => {
+
+    const { _id } = req.params;
+
+    Menu
+        .findOneAndDelete(_id)
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err));
+})
+
 module.exports = router
