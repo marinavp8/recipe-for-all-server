@@ -59,6 +59,50 @@ class EdamamService {
         })
     }
 
+    getRecipeDinnerbying(ingredient) {
+
+        return this.axiosApp.get('', {
+            params: {
+                type: "public",
+                q: ingredient,
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+                mealType: 'dinner'
+
+            }
+
+        })
+    }
+
+    getRecipebreackfastbying(ingredient) {
+
+        return this.axiosApp.get('', {
+            params: {
+                type: "public",
+                q: ingredient,
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+                mealType: 'breakfast'
+
+            }
+
+        })
+    }
+
+    getRecipeLunchByIng(ingredient) {
+
+        return this.axiosApp.get('', {
+            params: {
+                type: "public",
+                q: ingredient,
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+                mealType: 'lunch'
+
+            }
+
+        })
+    }
 
 
 }
