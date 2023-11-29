@@ -27,12 +27,14 @@ class EdamamService {
         )
     }
 
-    getOneRecipe(id) {
-        return this.axiosApp.get(`/${id}`, {
+    getOneRecipe(uri) {
+        return this.axiosApp.get(`/by-uri`, {
             params: {
+                uri: uri,
                 type: "public",
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
+                field: '&field=uri&field=label&field=image&field=images&field=source&field=url&field=shareAs&field=yield&field=dietLabels&field=healthLabels&field=cautions&field=ingredientLines&field=ingredients&field=calories&field=glycemicIndex&field=totalCO2Emissions&field=co2EmissionsClass&field=totalWeight&field=totalTime&field=cuisineType&field=mealType&field=dishType&field=totalNutrients&field=totalDaily&field=digest&field=tags'
             }
         })
     }
