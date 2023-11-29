@@ -3,10 +3,10 @@ const router = express.Router()
 const Menu = require("../models/Menu.model")
 
 
-router.get("/getallmenus", (req, res, next) => {
-
+router.get("/getallmenus/:ownerId", (req, res, next) => {
+    const { ownerId } = req.params
     Menu
-        .find()
+        .find({ owner: ownerId })
         .then((response) => res.json(response))
         .catch(err => next(err))
 })
