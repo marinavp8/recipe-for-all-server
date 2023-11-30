@@ -69,10 +69,12 @@ router.get("/recipes/diet", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get("/recipes/detail", (req, res, next) => {
-    const { uri } = req.params
+router.get("/recipes/:id", (req, res, next) => {
+    const { id } = req.params
+    console.log("este es el id desde servidor", id)
+    
     edamamService
-        .getOneRecipe(uri)
+        .getOneRecipe(id)
         .then((response) => res.json(response.data))
         .catch(err => next(err))
 })
