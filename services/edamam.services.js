@@ -106,6 +106,16 @@ class EdamamService {
         })
     }
 
+    getOneRecipe2(id) {
+        return this.axiosApp.get(`/${id}`, {
+            params: {
+                type: "public",
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+            }
+        })
+    }
+
 
 }
 
