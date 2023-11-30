@@ -34,7 +34,7 @@ router.post("/", (req, res, next) => {
 })
 
 router.put("/updateMenu/:_id", (req, res, next) => {
-    const { _id } = req.params;
+    const { _id } = req.params
     const { name } = req.body
     console.log(_id)
     console.log(req.body)
@@ -42,8 +42,40 @@ router.put("/updateMenu/:_id", (req, res, next) => {
     Menu
         .findByIdAndUpdate(_id, { name }, { new: false })
         .then(updatedMenu => res.json(updatedMenu))
-        .catch(err => next(err));
+        .catch(err => next(err))
 })
+
+
+// router.put("/updateMenu/:_id/:day", (req, res, next) => {
+//     const { _id, day } = req.params
+//     const { realId } = req.body
+//     console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId)
+
+//     Menu.findByIdAndUpdate(_id, day, { recipeBreakfastId: realId }, { new: true })
+//         .then(updatedMenu => { res.json(updatedMenu); console.log("recetaaaa", updatedMenu) })
+//         .catch(err => next(err))
+
+// })
+
+
+router.put("/updateMenu/:_id/:day", (req, res, next) => {
+    const { _id, day } = req.params;
+    const { realId } = req.body;
+    console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId);
+
+    Menu.findByIdAndUpdate(
+        _id,
+        { $set: { "days.$[elem].recipeBreakfastId": realId } },
+        { arrayFilters: [{ "elem.day": day }], new: true }
+    )
+        .then(updatedMenu => {
+            res.json(updatedMenu);
+            console.log("recetaaaa", updatedMenu);
+        })
+        .catch(err => next(err));
+});
+
+
 
 router.delete("/deleteMenu/:id", (req, res, next) => {
 
