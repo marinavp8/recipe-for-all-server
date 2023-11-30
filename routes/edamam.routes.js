@@ -78,6 +78,18 @@ router.get("/recipes/detail", (req, res, next) => {
 })
 
 
+router.get("/:id", (req, res, next) => {
+    const { id } = req.params
+    edamamService
+        .getOneRecipe2(id)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
+
+
+
+
+
 
 
 
