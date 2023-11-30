@@ -22,7 +22,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: "../images/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg"
+      required: [true, 'La imagen es obligatoria.'],
     },
     role: {
       type: String,
