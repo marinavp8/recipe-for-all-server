@@ -10,15 +10,15 @@ const saltRounds = 10
 
 router.post('/signup', (req, res, next) => {
 
-    const { username, email, password } = req.body
+    const { username, email, password, avatar } = req.body
 
     if (password.length < 2) {
         res.status(400).json({ message: 'Password must have at least 3 characters' })
         return
     }
 
-
     User
+
         .findOne({ email })
         .then((foundUser) => {
 
@@ -30,13 +30,11 @@ router.post('/signup', (req, res, next) => {
             const salt = bcrypt.genSaltSync(saltRounds)
             const hashedPassword = bcrypt.hashSync(password, salt)
 
-            return User.create({ email, password: hashedPassword, username })
+            return User.create({ email, password: hashedPassword, username, avatar })
         })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
-
-
 
 router.post('/login', (req, res, next) => {
 
@@ -48,6 +46,7 @@ router.post('/login', (req, res, next) => {
     }
 
     User
+
         .findOne({ email })
         .then((foundUser) => {
 
@@ -58,8 +57,8 @@ router.post('/login', (req, res, next) => {
 
             if (bcrypt.compareSync(password, foundUser.password)) {
 
-                const { _id, email, username } = foundUser;
-                const payload = { _id, email, username }
+                const { _id, email, username, avatar } = foundUser;
+                const payload = { _id, email, username, avatar }
 
                 const authToken = jwt.sign(
                     payload,

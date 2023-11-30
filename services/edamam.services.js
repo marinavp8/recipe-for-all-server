@@ -3,7 +3,6 @@ const axios = require("axios")
 const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID;
 const EDAMAM_APP_KEY = process.env.EDAMAM_APP_KEY;
 
-
 class EdamamService {
 
     constructor() {
@@ -31,7 +30,6 @@ class EdamamService {
 
         return this.axiosApp.get(`/${id}`, {
             params: {
-
                 type: "public",
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
@@ -40,6 +38,7 @@ class EdamamService {
     }
 
     getRecipebyMeal(mealType) {
+
         return this.axiosApp.get('', {
             params: {
                 type: "public",
@@ -51,6 +50,7 @@ class EdamamService {
     }
 
     getRecipebyDiet(diet) {
+
         return this.axiosApp.get('', {
             params: {
                 type: "public",
@@ -70,9 +70,7 @@ class EdamamService {
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
                 mealType: 'dinner'
-
             }
-
         })
     }
 
@@ -85,9 +83,7 @@ class EdamamService {
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
                 mealType: 'breakfast'
-
             }
-
         })
     }
 
@@ -102,11 +98,11 @@ class EdamamService {
                 mealType: 'lunch'
 
             }
-
         })
     }
 
     getOneRecipe2(id) {
+
         return this.axiosApp.get(`/${id}`, {
             params: {
                 type: "public",
@@ -116,9 +112,7 @@ class EdamamService {
         })
     }
 
-
 }
-
 
 const edamamService = new EdamamService()
 
