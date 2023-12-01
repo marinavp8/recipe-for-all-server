@@ -12,17 +12,17 @@ router.post('/', (req, res, next) => {
         .catch(err => next(err))
 })
 
-// router.post('/edit', (req, res, next) => {
+router.post('/edit', (req, res, next) => {
 
-//     const { comment } = req.body
+    const { comment } = req.body
 
-//     Comment
-//         .findByIdAndUpdate({ comment })
-//         .then(() => res.sendStatus(201))
-//         .catch(err => next(err))
+    Comment
+        .findByIdAndUpdate({ comment })
+        .then(() => res.sendStatus(201))
+        .catch(err => next(err))
 
 
-// })
+})
 
 
 module.exports = router
