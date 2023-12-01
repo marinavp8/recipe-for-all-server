@@ -13,4 +13,7 @@ module.exports = app => {
   const uploadRoutes = require("./upload.routes")
   app.use("/upload", uploadRoutes)
 
+  const commentRoutes = require("./comment.routes")
+  app.use("/comment", commentRoutes)
+
 }
