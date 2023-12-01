@@ -73,6 +73,38 @@ router.put("/updateMenu/:_id/:day", (req, res, next) => {
             console.log("recetaaaa", updatedMenu);
         })
         .catch(err => next(err));
+})
+router.put("/updateMenuLunch/:_id/:day", (req, res, next) => {
+    const { _id, day } = req.params;
+    const { realId } = req.body;
+    console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId);
+
+    Menu.findByIdAndUpdate(
+        _id,
+        { $set: { "days.$[elem].recipeLunchId": realId } },
+        { arrayFilters: [{ "elem.day": day }], new: true }
+    )
+        .then(updatedMenu => {
+            res.json(updatedMenu);
+            console.log("recetaaaa", updatedMenu);
+        })
+        .catch(err => next(err));
+});
+router.put("/updateMenuDinner/:_id/:day", (req, res, next) => {
+    const { _id, day } = req.params;
+    const { realId } = req.body;
+    console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId);
+
+    Menu.findByIdAndUpdate(
+        _id,
+        { $set: { "days.$[elem].recipeDinnerId": realId } },
+        { arrayFilters: [{ "elem.day": day }], new: true }
+    )
+        .then(updatedMenu => {
+            res.json(updatedMenu);
+            console.log("recetaaaa", updatedMenu);
+        })
+        .catch(err => next(err));
 });
 
 
