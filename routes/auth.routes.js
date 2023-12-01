@@ -15,17 +15,6 @@ router.post('/signup', (req, res, next) => {
 
 })
 
-router.post('/edit', (req, res, next) => {
-
-    const { username, email, avatar } = req.body
-
-    User
-        .findByIdAndUpdate({ email, username, avatar })
-        .then(() => res.sendStatus(201))
-        .catch(err => next(err))
-
-})
-
 router.post('/login', (req, res, next) => {
 
     const { email, password } = req.body
