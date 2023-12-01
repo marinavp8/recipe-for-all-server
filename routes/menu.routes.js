@@ -3,10 +3,10 @@ const router = express.Router()
 const Menu = require("../models/Menu.model")
 
 
-router.get("/getallmenus/:ownerId", (req, res, next) => {
-    const { ownerId } = req.params
+router.get("/getallmenus/:owner", (req, res, next) => {
+    const { owner } = req.params
     Menu
-        .find({ owner: ownerId })
+        .find({ owner })
         .then((response) => res.json(response))
         .catch(err => next(err))
 })
@@ -24,7 +24,7 @@ router.get("/:_id", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
 
-    const menu = req.body
+    const { body: menu } = req
 
     Menu
         .create(menu)
@@ -33,15 +33,14 @@ router.post("/", (req, res, next) => {
 
 })
 
+// TODO: REVISAR TODAS LAS OPORTUNIDADES DE RESPUESTA MEDIANTE HHTP STATUS
 router.put("/updateMenu/:_id", (req, res, next) => {
     const { _id } = req.params
     const { name } = req.body
-    console.log(_id)
-    console.log(req.body)
 
     Menu
-        .findByIdAndUpdate(_id, { name }, { new: false })
-        .then(updatedMenu => res.json(updatedMenu))
+        .findByIdAndUpdate(_id, { name }, { new: true })
+        .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
 
@@ -59,50 +58,48 @@ router.put("/updateMenu/:_id", (req, res, next) => {
 
 
 router.put("/updateMenu/:_id/:day", (req, res, next) => {
-    const { _id, day } = req.params;
-    const { realId } = req.body;
-    console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId);
+    const { _id: menuId, day } = req.params
+    const { realId } = req.body
 
     Menu.findByIdAndUpdate(
-        _id,
+        menuId,
         { $set: { "days.$[elem].recipeBreakfastId": realId } },
         { arrayFilters: [{ "elem.day": day }], new: true }
     )
         .then(updatedMenu => {
             res.json(updatedMenu);
-            console.log("recetaaaa", updatedMenu);
         })
         .catch(err => next(err));
 })
+
+
+// MEJORAR NOMENCLATURA DE REALID
 router.put("/updateMenuLunch/:_id/:day", (req, res, next) => {
-    const { _id, day } = req.params;
+    const { _id: menuId, day } = req.params
     const { realId } = req.body;
-    console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId);
 
     Menu.findByIdAndUpdate(
-        _id,
+        menuId,
         { $set: { "days.$[elem].recipeLunchId": realId } },
         { arrayFilters: [{ "elem.day": day }], new: true }
     )
         .then(updatedMenu => {
             res.json(updatedMenu);
-            console.log("recetaaaa", updatedMenu);
         })
         .catch(err => next(err));
-});
+})
+
 router.put("/updateMenuDinner/:_id/:day", (req, res, next) => {
-    const { _id, day } = req.params;
+    const { _id: menuId, day } = req.params
     const { realId } = req.body;
-    console.log("ESTO ES LO QUE LLEGA AL BACK", _id, day, realId);
 
     Menu.findByIdAndUpdate(
-        _id,
+        menuId,
         { $set: { "days.$[elem].recipeDinnerId": realId } },
         { arrayFilters: [{ "elem.day": day }], new: true }
     )
         .then(updatedMenu => {
             res.json(updatedMenu);
-            console.log("recetaaaa", updatedMenu);
         })
         .catch(err => next(err));
 });
@@ -115,7 +112,7 @@ router.delete("/deleteMenu/:id", (req, res, next) => {
 
     Menu
         .findOneAndDelete(_id)
-        .then(() => res.sendStatus(200))
+        .then(() => res.sendStatus(201))
         .catch(err => next(err));
 })
 

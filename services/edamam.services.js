@@ -3,6 +3,7 @@ const axios = require("axios")
 const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID;
 const EDAMAM_APP_KEY = process.env.EDAMAM_APP_KEY;
 
+// TODO: PASAR CONFIGURACIONES GLOBALES A CREATE
 class EdamamService {
 
     constructor() {

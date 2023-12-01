@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const edamamService = require("../services/edamam.services")
 
-
+// TODO: REVISAR QUE TODOS LOS CATCH SEAN GESTIONADOS CON NEXT
 
 router.get("/search/dinner", (req, res, next) => {
 
@@ -41,7 +41,6 @@ router.get("/search", (req, res, next) => {
 
     const { ingredient } = req.query
 
-
     edamamService
         .getRecipes(ingredient)
         .then((response) => res.json(response.data))
@@ -53,7 +52,6 @@ router.get("/search/vegetarian", (req, res, next) => {
 
     const { ingredient } = req.query
 
-
     edamamService
         .getVeganRecipe(ingredient)
         .then((response) => res.json(response.data))
@@ -64,7 +62,6 @@ router.get("/search/place", (req, res, next) => {
 
     const { place } = req.query
 
-
     edamamService
         .getRecipeByCountry(place)
         .then((response) => res.json(response.data))
@@ -73,7 +70,9 @@ router.get("/search/place", (req, res, next) => {
 
 
 router.get("/recipes", (req, res, next) => {
+
     const { mealType } = req.query
+
     edamamService
         .getRecipebyMeal(mealType)
         .then((response) => res.json(response.data))
@@ -81,7 +80,9 @@ router.get("/recipes", (req, res, next) => {
 })
 
 router.get("/recipes/diet", (req, res, next) => {
+
     const { diet } = req.query
+
     edamamService
         .getRecipebyMeal(diet)
         .then((response) => res.json(response.data))
@@ -89,8 +90,8 @@ router.get("/recipes/diet", (req, res, next) => {
 })
 
 router.get("/recipes/:id", (req, res, next) => {
+
     const { id } = req.params
-    console.log("este es el id desde servidor", id)
 
     edamamService
         .getOneRecipe(id)
