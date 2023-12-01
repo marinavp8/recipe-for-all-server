@@ -37,8 +37,6 @@ router.get("/search/lunch", (req, res, next) => {
 
 })
 
-
-
 router.get("/search", (req, res, next) => {
 
     const { ingredient } = req.query
@@ -50,6 +48,30 @@ router.get("/search", (req, res, next) => {
         .catch(err => next(err))
 })
 
+
+router.get("/search/vegetarian", (req, res, next) => {
+
+    const { ingredient } = req.query
+
+
+    edamamService
+        .getVeganRecipe(ingredient)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
+
+router.get("/search/place", (req, res, next) => {
+
+    const { place } = req.query
+
+
+    edamamService
+        .getRecipeByCountry(place)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
+
+
 router.get("/recipes", (req, res, next) => {
     const { mealType } = req.query
     edamamService
@@ -57,9 +79,6 @@ router.get("/recipes", (req, res, next) => {
         .then((response) => res.json(response.data))
         .catch(err => next(err))
 })
-
-
-
 
 router.get("/recipes/diet", (req, res, next) => {
     const { diet } = req.query
@@ -72,24 +91,12 @@ router.get("/recipes/diet", (req, res, next) => {
 router.get("/recipes/:id", (req, res, next) => {
     const { id } = req.params
     console.log("este es el id desde servidor", id)
-    
+
     edamamService
         .getOneRecipe(id)
         .then((response) => res.json(response.data))
         .catch(err => next(err))
 })
-
-
-router.get("/:id", (req, res, next) => {
-    const { id } = req.params
-    edamamService
-        .getOneRecipe2(id)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
-
-
-
 
 
 

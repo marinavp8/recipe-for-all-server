@@ -100,17 +100,34 @@ class EdamamService {
             }
         })
     }
+    getVeganRecipe(ingredient) {
 
-    getOneRecipe2(id) {
+        return this.axiosApp.get('', {
+            params: {
+                type: "public",
+                q: ingredient,
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+                health: 'vegetarian'
 
-        return this.axiosApp.get(`/${id}`, {
+            }
+        })
+    }
+
+    getRecipeByCountry(place) {
+
+        return this.axiosApp.get('', {
             params: {
                 type: "public",
                 app_id: EDAMAM_APP_ID,
                 app_key: EDAMAM_APP_KEY,
+                cuisineType: place
+
             }
         })
     }
+
+
 
 }
 
