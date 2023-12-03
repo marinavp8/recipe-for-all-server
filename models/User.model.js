@@ -9,14 +9,14 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique: [true, 'El nombre de usuario debe ser único'],
+      unique: [true, 'Username must be unique'],
       minlength: [3, 'El usuario necesita mínimo 3 caracteres.']
     },
 
     email: {
       type: String,
-      required: [true, 'El email es obligatorio.'],
-      unique: [true, 'El email debe ser unico.'],
+      required: [true, 'Email is required.'],
+      unique: [true, 'Email must be unique.'],
       lowercase: true,
       trim: true,
       minlength: [5, 'El correro necesita mínimo 5 caracteres.']
@@ -24,13 +24,13 @@ const userSchema = new Schema(
 
     password: {
       type: String,
-      required: [true, 'La contraseña es obligatoria.'],
+      required: [true, 'Password is required.'],
       minlength: [2, 'La contraseña debe tener mas de dos caracteres']
     },
 
     avatar: {
       type: String,
-      required: [true, 'La imagen es obligatoria.'],
+      required: [true, 'Profile image is required.'],
     },
 
     role: {
@@ -38,6 +38,9 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
+    favouriteRecipies: {
+      type: [String]
+    }
 
   },
   {
