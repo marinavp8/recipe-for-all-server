@@ -11,8 +11,7 @@ router.get("/search/dinner", (req, res, next) => {
     edamamService
         .getRecipeDinnerbying(ingredient)
         .then((response) => res.json(response.data))
-        .catch(err => err.data.errors)
-
+        .catch(err => next(err))
 })
 
 router.get("/search/breakfast", (req, res, next) => {
@@ -22,8 +21,7 @@ router.get("/search/breakfast", (req, res, next) => {
     edamamService
         .getRecipebreackfastbying(ingredient)
         .then((response) => res.json(response.data))
-        .catch(err => err.data.errors)
-
+        .catch(err => next(err))
 })
 
 router.get("/search/lunch", (req, res, next) => {
@@ -33,8 +31,7 @@ router.get("/search/lunch", (req, res, next) => {
     edamamService
         .getRecipeLunchByIng(ingredient)
         .then((response) => res.json(response.data))
-        .catch(err => err.data.errors)
-
+        .catch(err => next(err))
 })
 
 router.get("/search", (req, res, next) => {

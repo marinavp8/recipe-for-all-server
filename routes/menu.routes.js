@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Menu = require("../models/Menu.model")
+const { verifyToken } = require("../middlewares/verifyToken")
 
 
 router.get("/getallmenus/:owner", (req, res, next) => {
@@ -34,12 +35,13 @@ router.post("/", (req, res, next) => {
 })
 
 // TODO: REVISAR TODAS LAS OPORTUNIDADES DE RESPUESTA MEDIANTE HHTP STATUS
-router.put("/updateMenu/:_id", (req, res, next) => {
+router.put("/updateMenu/:_id", verifyToken, (req, res, next) => {
     const { _id } = req.params
     const { name } = req.body
+    const { _id: owner } = req.payload
 
     Menu
-        .findByIdAndUpdate(_id, { name }, { new: true })
+        .findByIdAndUpdate(_id, { name }, { owner }, { new: true })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
