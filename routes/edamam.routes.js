@@ -11,7 +11,7 @@ router.get("/search/dinner", (req, res, next) => {
     edamamService
         .getRecipeDinnerbying(ingredient)
         .then((response) => res.json(response.data))
-        .catch(err => err.data.errors)
+        .catch(err => next(err))
 
 })
 
@@ -22,7 +22,7 @@ router.get("/search/breakfast", (req, res, next) => {
     edamamService
         .getRecipebreackfastbying(ingredient)
         .then((response) => res.json(response.data))
-        .catch(err => err.data.errors)
+        .catch(err => next(err))
 
 })
 
@@ -33,7 +33,7 @@ router.get("/search/lunch", (req, res, next) => {
     edamamService
         .getRecipeLunchByIng(ingredient)
         .then((response) => res.json(response.data))
-        .catch(err => err.data.errors)
+        .catch(err => next(err))
 
 })
 
@@ -47,13 +47,23 @@ router.get("/search", (req, res, next) => {
         .catch(err => next(err))
 })
 
-
-router.get("/search/vegetarian", (req, res, next) => {
+router.get("/multiple", (req, res, next) => {
 
     const { ingredient } = req.query
 
     edamamService
-        .getVeganRecipe(ingredient)
+        .getMultipleIng(ingredient)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
+
+
+router.get("/search/health", (req, res, next) => {
+
+    const { health } = req.query
+
+    edamamService
+        .getHealthRecipe(health)
         .then((response) => res.json(response.data))
         .catch(err => next(err))
 })
@@ -88,6 +98,26 @@ router.get("/recipes/diet", (req, res, next) => {
         .then((response) => res.json(response.data))
         .catch(err => next(err))
 })
+
+router.get("/recipes/total-time", (req, res, next) => {
+
+    const { time } = req.query
+
+    edamamService
+        .getRecipeTime(time)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
+
+router.get("/recipes/random", (req, res, next) => {
+
+
+    edamamService
+        .getRandom()
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
+
 
 router.get("/recipes/:id", (req, res, next) => {
 

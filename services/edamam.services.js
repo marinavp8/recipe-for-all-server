@@ -3,13 +3,17 @@ const axios = require("axios")
 const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID;
 const EDAMAM_APP_KEY = process.env.EDAMAM_APP_KEY;
 
-// TODO: PASAR CONFIGURACIONES GLOBALES A CREATE
 class EdamamService {
 
     constructor() {
 
         this.axiosApp = axios.create({
             baseURL: `https://api.edamam.com/api/recipes/v2`,
+            params: {
+                type: "public",
+                app_id: EDAMAM_APP_ID,
+                app_key: EDAMAM_APP_KEY,
+            }
         })
 
     }
@@ -18,10 +22,18 @@ class EdamamService {
 
         return this.axiosApp.get("", {
             params: {
+                q: ingredient
+            }
+        },
+        )
+    }
+
+    getMultipleIng(ingredient) {
+        return this.axiosApp.get("", {
+            params: {
                 q: ingredient,
-                type: "public",
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
+                ingr: '1-8'
+
             }
         },
         )
@@ -29,22 +41,13 @@ class EdamamService {
 
     getOneRecipe(id) {
 
-        return this.axiosApp.get(`/${id}`, {
-            params: {
-                type: "public",
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
-            }
-        })
+        return this.axiosApp.get(`/${id}`)
     }
 
     getRecipebyMeal(mealType) {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
                 mealType: mealType
             }
         })
@@ -54,9 +57,6 @@ class EdamamService {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
                 diet: diet
             }
         })
@@ -66,10 +66,7 @@ class EdamamService {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
                 q: ingredient,
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
                 mealType: 'dinner'
             }
         })
@@ -79,10 +76,7 @@ class EdamamService {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
                 q: ingredient,
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
                 mealType: 'breakfast'
             }
         })
@@ -92,25 +86,17 @@ class EdamamService {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
                 q: ingredient,
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
                 mealType: 'lunch'
 
             }
         })
     }
-    getVeganRecipe(ingredient) {
+    getHealthRecipe(health) {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
-                q: ingredient,
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
-                health: 'vegetarian'
-
+                health: health
             }
         })
     }
@@ -119,14 +105,29 @@ class EdamamService {
 
         return this.axiosApp.get('', {
             params: {
-                type: "public",
-                app_id: EDAMAM_APP_ID,
-                app_key: EDAMAM_APP_KEY,
                 cuisineType: place
 
             }
         })
     }
+    getRecipeTime(time) {
+
+        return this.axiosApp.get('', {
+            params: {
+                time: time
+
+            }
+        })
+    }
+    // getRandom(random) {
+
+    //     return this.axiosApp.get('', {
+    //         params: {
+    //             random: random
+
+    //         }
+    //     })
+    // }
 
 
 
