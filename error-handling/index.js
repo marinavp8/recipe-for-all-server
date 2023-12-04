@@ -14,14 +14,14 @@ module.exports = (app) => {
     }
 
     if (err.code && err.code === 11000) {
-      res.status(409).json({ errorMessages: ['El registro ya se encuentra en la base de datos'] })
+      res.status(409).json({ errorMessages })
     }
 
     if (!res.headersSent) {
       res
         .status(500)
         .json({
-          message: "Internal server error. Check the server console",
+          errorMessages: ["Internal server error. Check the server console"]
         })
     }
   })

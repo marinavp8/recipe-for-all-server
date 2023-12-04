@@ -23,9 +23,11 @@ router.get("/:_id", (req, res, next) => {
 
 })
 
-router.post("/", (req, res, next) => {
+router.post("/", verifyToken, (req, res, next) => {
 
     const { body: menu } = req
+    const { _id: owner } = req.payload
+    menu.owner = owner
 
     Menu
         .create(menu)
