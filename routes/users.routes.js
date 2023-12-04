@@ -8,7 +8,7 @@ router.get('/', verifyToken, (req, res, next) => {
 
     User
         .find()
-        .selectet({ username: 1 })
+        .select({ username: 1 })
         .then(users => res.json(users))
         .catch(err => next(err))
 
