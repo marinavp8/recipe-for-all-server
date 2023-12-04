@@ -19,12 +19,13 @@ router.post('/', verifyToken, (req, res, next) => {
 })
 
 
-router.get('/', (req, res, next) => {
+router.get('/', verifyToken, (req, res, next) => {
 
     const { recipeId } = req.query
 
     Comment
         .find({ recipeCommented: recipeId })
+        .populate('owner')
         .then((comments) => res.json(comments))
         .catch(err => next(err))
 })

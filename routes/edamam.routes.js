@@ -1,93 +1,43 @@
 const express = require('express');
 const router = express.Router();
 const edamamService = require("../services/edamam.services")
-
-// TODO: REVISAR QUE TODOS LOS CATCH SEAN GESTIONADOS CON NEXT
-
-router.get("/search/dinner", (req, res, next) => {
-
-    const { ingredient } = req.query
-
-    edamamService
-        .getRecipeDinnerbying(ingredient)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-
-})
-
-router.get("/search/breakfast", (req, res, next) => {
-
-    const { ingredient } = req.query
-
-    edamamService
-        .getRecipebreackfastbying(ingredient)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-
-})
-
-router.get("/search/lunch", (req, res, next) => {
-
-    const { ingredient } = req.query
-
-    edamamService
-        .getRecipeLunchByIng(ingredient)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-
-})
-
-router.get("/search", (req, res, next) => {
-
-    const { ingredient } = req.query
-
-    edamamService
-        .getRecipes(ingredient)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
-
-router.get("/multiple", (req, res, next) => {
-
-    const { ingredient } = req.query
-
-    edamamService
-        .getMultipleIng(ingredient)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
+const {
+    getDinnerByIng,
+    getRecipebreackfastbying,
+    getRecipeLunchByIng,
+    getRecipes,
+    getMultipleIng,
+    getHealthRecipe,
+    getRecipeByCountry,
+    getRecipebyMeal,
+    getRecipeTime,
+    getRecipeCalories,
+    getRecipeExcluding,
+    getByVitaminB12,
+    getOneRecipe
 
 
-router.get("/search/health", (req, res, next) => {
-
-    const { health } = req.query
-
-    edamamService
-        .getHealthRecipe(health)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
-
-router.get("/search/place", (req, res, next) => {
-
-    const { place } = req.query
-
-    edamamService
-        .getRecipeByCountry(place)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
+} = require('../controllers/edamam-controllers')
 
 
-router.get("/recipes", (req, res, next) => {
+router.get("/search/dinner", getDinnerByIng)
 
-    const { mealType } = req.query
 
-    edamamService
-        .getRecipebyMeal(mealType)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
+router.get("/search/breakfast", getRecipebreackfastbying)
+
+router.get("/search/lunch", getRecipeLunchByIng)
+
+router.get("/search", getRecipes)
+
+router.get("/multiple", getMultipleIng)
+
+
+router.get("/search/health", getHealthRecipe)
+
+router.get("/search/place", getRecipeByCountry)
+
+
+router.get("/recipes", getRecipebyMeal)
 
 router.get("/recipes/diet", (req, res, next) => {
 
@@ -99,68 +49,17 @@ router.get("/recipes/diet", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get("/recipes/total-time", (req, res, next) => {
-
-    const { time } = req.query
-
-    edamamService
-        .getRecipeTime(time)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
-
-// router.get("/recipes/random", (req, res, next) => {
+router.get("/recipes/total-time", getRecipeTime)
 
 
-//     edamamService
-//         .getRandom()
-//         .then((response) => res.json(response.data))
-//         .catch(err => next(err))
-// })
+router.get("/calories", getRecipeCalories)
 
-router.get("/calories", (req,res,next) => {
+router.get("/excluding", getRecipeExcluding)
 
-    const { calories } = req.query
-
-    edamamService
-        .getRecipeTime(calories)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-
-})
-
-router.get("/excluding", (req,res,next) => {
-
-    const { excluded } = req.query
-
-    edamamService
-        .getRecipeExcluding(excluded)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-
-})
-
-router.get("/vitB12", (req,res,next) => {
-
-    const { index } = req.query
-
-    edamamService
-        .getByVitaminB12(index)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-
-})
+router.get("/vitB12", getByVitaminB12)
 
 
-router.get("/recipes/:id", (req, res, next) => {
-
-    const { id } = req.params
-
-    edamamService
-        .getOneRecipe(id)
-        .then((response) => res.json(response.data))
-        .catch(err => next(err))
-})
+router.get("/recipes/:id", getOneRecipe)
 
 
 

@@ -8,8 +8,8 @@ const commentSchema = new Schema(
             required: true
         },
         owner: {
-            type: String,
-            required: true
+            type: Schema.Types.ObjectId,
+            ref: 'User'
         },
         comment: {
             type: String,
