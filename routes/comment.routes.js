@@ -2,15 +2,32 @@ const router = require("express").Router()
 
 const Comment = require('../models/Comments.model')
 
-router.post('/', (req, res, next) => {
+const { verifyToken } = require("../middlewares/verifyToken")
 
-    const { comment } = req.body
+
+
+router.post('/', verifyToken, (req, res, next) => {
+
+    const { comment, recipeCommented } = req.body
+    const ownerId = req.payload._id
 
     Comment
-        .create({ comment })
+        .create({ comment, owner: ownerId, recipeCommented })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
+
+router.get('/', (req, res, next) => {
+
+    const { recipeCommented } = req.query
+
+    Comment
+        .find({ recipeCommented })
+        .then((comments) => res.json(comments))
+        .catch(err => next(err))
+})
+
+
 
 router.post('/edit', (req, res, next) => {
 

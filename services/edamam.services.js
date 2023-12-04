@@ -119,6 +119,34 @@ class EdamamService {
             }
         })
     }
+    getRecipeCalories(calories) {
+
+        return this.axiosApp.get('', {
+            params: {
+                calories: calories
+
+            }
+        })
+    }
+
+    getRecipeExcluding(excluded) {
+        return this.axiosApp.get('', {
+            params: {
+                excluded: excluded
+
+            }
+        })
+    }
+    // getByVitaminB12(index) {
+    //     return this.axiosApp.get('', {
+    //         params: {
+    //             nutrients: `%5BVITB12%5D:${index}`
+
+    //         }
+    //     })
+    // }
+
+
     // getRandom(random) {
 
     //     return this.axiosApp.get('', {

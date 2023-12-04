@@ -109,13 +109,46 @@ router.get("/recipes/total-time", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get("/recipes/random", (req, res, next) => {
+// router.get("/recipes/random", (req, res, next) => {
 
+
+//     edamamService
+//         .getRandom()
+//         .then((response) => res.json(response.data))
+//         .catch(err => next(err))
+// })
+
+router.get("/calories", (req,res,next) => {
+
+    const { calories } = req.query
 
     edamamService
-        .getRandom()
+        .getRecipeTime(calories)
         .then((response) => res.json(response.data))
         .catch(err => next(err))
+
+})
+
+router.get("/excluding", (req,res,next) => {
+
+    const { excluded } = req.query
+
+    edamamService
+        .getRecipeExcluding(excluded)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+
+})
+
+router.get("/vitB12", (req,res,next) => {
+
+    const { index } = req.query
+
+    edamamService
+        .getByVitaminB12(index)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+
 })
 
 
