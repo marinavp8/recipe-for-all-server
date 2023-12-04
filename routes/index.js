@@ -18,7 +18,7 @@ module.exports = app => {
   const commentRoutes = require("./comment.routes")
   app.use("/comment", commentRoutes)
 
-  // const userRoutes = require("./users.routes")
-  // app.use("/users", userRoutes)
+  const usersRoutes = require("./users.routes")
+  app.use("/api/auth/users", usersRoutes)
 
 }
