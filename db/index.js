@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 
 const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/recipe-for-all";
+  process.env.MONGODB_URI || "mongodb://localhost:27017/recipe-for-all"
 
 mongoose
   .connect(MONGO_URI)
