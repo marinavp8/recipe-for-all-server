@@ -2,7 +2,6 @@ const { Schema, model } = require('mongoose')
 
 const commentSchema = new Schema(
 
-
     {
         recipeCommented: {
             type: String,
