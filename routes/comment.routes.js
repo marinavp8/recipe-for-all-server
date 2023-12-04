@@ -18,12 +18,13 @@ router.post('/', verifyToken, (req, res, next) => {
         .catch(err => next(err))
 })
 
+
 router.get('/', (req, res, next) => {
 
-    const { recipeCommented } = req.query
+    const { recipeId } = req.query
 
     Comment
-        .find({ recipeCommented })
+        .find({ recipeCommented: recipeId })
         .then((comments) => res.json(comments))
         .catch(err => next(err))
 })
