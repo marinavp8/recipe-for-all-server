@@ -2,12 +2,17 @@ const router = require("express").Router()
 
 const Comment = require('../models/Comments.model')
 
-router.post('/', (req, res, next) => {
+const { verifyToken } = require("../middlewares/verifyToken")
+
+router.post('/', verifyToken, (req, res, next) => {
 
     const { comment } = req.body
 
+    const ownerId = req.payload._id
+
+
     Comment
-        .create({ comment })
+        .create({ comment, owner: ownerId })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })

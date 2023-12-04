@@ -10,7 +10,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: [true, 'Username must be unique'],
-      minlength: [3, 'El usuario necesita mínimo 3 caracteres.']
+      minlength: [3, 'Username must have at least 3 characters.'],
+      lowercase: true
+
     },
 
     email: {
@@ -19,18 +21,19 @@ const userSchema = new Schema(
       unique: [true, 'Email must be unique.'],
       lowercase: true,
       trim: true,
-      minlength: [5, 'El correro necesita mínimo 5 caracteres.']
     },
 
     password: {
       type: String,
       required: [true, 'Password is required.'],
-      minlength: [2, 'La contraseña debe tener mas de dos caracteres']
+      minlength: [2, 'Password must have at least 2 characters'],
+      lowercase: true
     },
 
     avatar: {
       type: String,
       required: [true, 'Profile image is required.'],
+      default: ''
     },
 
     role: {
@@ -60,8 +63,8 @@ userSchema.pre('save', function (next) {
 })
 
 userSchema.methods.signToken = function () {
-  const { _id, username, email, avatar } = this
-  const payload = { _id, username, email, avatar }
+  const { _id, username, email, avatar, role } = this
+  const payload = { _id, username, email, avatar, role }
 
   const authToken = jwt.sign(
     payload,
@@ -79,4 +82,4 @@ userSchema.methods.validatePassword = function (candidatePassword) {
 
 const User = model("User", userSchema)
 
-module.exports = User;
+module.exports = User
