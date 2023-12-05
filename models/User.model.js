@@ -27,7 +27,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required.'],
       minlength: [2, 'Password must have at least 2 characters'],
-      lowercase: true
     },
 
     avatar: {
@@ -62,6 +61,10 @@ userSchema.pre('save', function (next) {
 
 })
 
+userSchema.methods.validatePassword = function (candidatePassword) {
+  return bcrypt.compareSync(candidatePassword, this.password)
+}
+
 userSchema.methods.signToken = function () {
   const { _id, username, email, avatar, role } = this
   const payload = { _id, username, email, avatar, role }
@@ -75,9 +78,7 @@ userSchema.methods.signToken = function () {
   return authToken
 }
 
-userSchema.methods.validatePassword = function (candidatePassword) {
-  return bcrypt.compareSync(candidatePassword, this.password)
-}
+
 
 
 const User = model("User", userSchema)

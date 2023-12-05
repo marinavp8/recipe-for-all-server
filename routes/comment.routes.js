@@ -44,5 +44,16 @@ router.post('/edit', (req, res, next) => {
 
 })
 
+router.delete('/delete/:_id', (req, res, next) => {
+
+    const { _id } = req.params
+
+    Comment
+        .findByIdAndDelete(_id)
+        .then(() => res.sendStatus(201))
+        .catch(err => next(err))
+
+})
+
 
 module.exports = router

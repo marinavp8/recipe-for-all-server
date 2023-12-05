@@ -137,14 +137,6 @@ class EdamamService {
             }
         })
     }
-    // getByVitaminB12(index) {
-    //     return this.axiosApp.get('', {
-    //         params: {
-    //             nutrients: `%5BVITB12%5D:${index}`
-
-    //         }
-    //     })
-    // }
 
 
     // getRandom(random) {
