@@ -1,8 +1,6 @@
 const { verifyToken } = require("../middlewares/verifyToken")
 const jwt = require('jsonwebtoken')
 const User = require("../models/User.model")
-const { response } = require("express")
-
 const router = require("express").Router()
 
 router.get('/', verifyToken, (req, res, next) => {
