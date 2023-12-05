@@ -4,9 +4,6 @@ const Comment = require('../models/Comments.model')
 
 const { verifyToken } = require("../middlewares/verifyToken")
 
-
-
-
 router.post('/', verifyToken, (req, res, next) => {
 
     const { comment, recipeCommented } = req.body
@@ -17,7 +14,6 @@ router.post('/', verifyToken, (req, res, next) => {
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
-
 
 router.get('/', verifyToken, (req, res, next) => {
 
@@ -30,8 +26,6 @@ router.get('/', verifyToken, (req, res, next) => {
         .catch(err => next(err))
 })
 
-
-
 router.post('/edit', (req, res, next) => {
 
     const { comment } = req.body
@@ -43,6 +37,5 @@ router.post('/edit', (req, res, next) => {
 
 
 })
-
 
 module.exports = router

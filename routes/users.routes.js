@@ -1,6 +1,7 @@
 const { verifyToken } = require("../middlewares/verifyToken")
 const jwt = require('jsonwebtoken')
 const User = require("../models/User.model")
+const { response } = require("express")
 
 const router = require("express").Router()
 
@@ -8,19 +9,23 @@ router.get('/', verifyToken, (req, res, next) => {
 
     User
         .find()
-        .select({ username: 1 })
-        .then(users => res.json(users))
+        .select({ username: 1, avatar: 1, _id: 1 })
+        .then(response => res.json(response))
         .catch(err => next(err))
 
 })
 
-router.get('/verify', verifyToken, (req, res, next) => {
+router.delete('/delete/:id', (req, res, next) => {
 
-    const loggedUser = req.payload
+    const { id } = req.params
 
-    res.json({ loggedUser })
+    User
+
+        .findByIdAndDelete(id)
+        .then(() => console.log())
+        .catch(err => next(err))
+
 })
-
 
 
 module.exports = router

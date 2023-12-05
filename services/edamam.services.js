@@ -1,7 +1,7 @@
 const axios = require("axios")
 
-const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID;
-const EDAMAM_APP_KEY = process.env.EDAMAM_APP_KEY;
+const EDAMAM_APP_ID = process.env.EDAMAM_APP_ID
+const EDAMAM_APP_KEY = process.env.EDAMAM_APP_KEY
 
 class EdamamService {
 
@@ -146,7 +146,6 @@ class EdamamService {
     //     })
     // }
 
-
     // getRandom(random) {
 
     //     return this.axiosApp.get('', {
@@ -156,8 +155,6 @@ class EdamamService {
     //         }
     //     })
     // }
-
-
 
 }
 

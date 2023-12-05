@@ -12,7 +12,6 @@ router.get("/getallmenus/:owner", (req, res, next) => {
         .catch(err => next(err))
 })
 
-
 router.get("/:_id", (req, res, next) => {
 
     const { _id } = req.params
@@ -107,8 +106,6 @@ router.put("/updateMenuDinner/:_id/:day", (req, res, next) => {
         })
         .catch(err => next(err));
 });
-
-
 
 router.delete("/deleteMenu/:id", (req, res, next) => {
 

@@ -27,7 +27,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required.'],
       minlength: [2, 'Password must have at least 2 characters'],
-      lowercase: true
     },
 
     avatar: {
@@ -41,9 +40,10 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    favouriteRecipies: {
-      type: [String]
-    }
+
+    favouriteRecipies: [{
+      type: String
+    }]
 
   },
   {
