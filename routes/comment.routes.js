@@ -4,9 +4,6 @@ const Comment = require('../models/Comments.model')
 
 const { verifyToken } = require("../middlewares/verifyToken")
 
-
-
-
 router.post('/', verifyToken, (req, res, next) => {
 
     const { comment, recipeCommented } = req.body
@@ -18,7 +15,6 @@ router.post('/', verifyToken, (req, res, next) => {
         .catch(err => next(err))
 })
 
-
 router.get('/', verifyToken, (req, res, next) => {
 
     const { recipeId } = req.query
@@ -29,8 +25,6 @@ router.get('/', verifyToken, (req, res, next) => {
         .then((comments) => res.json(comments))
         .catch(err => next(err))
 })
-
-
 
 router.post('/edit', (req, res, next) => {
 

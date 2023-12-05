@@ -40,9 +40,10 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    favouriteRecipies: {
-      type: [String]
-    }
+
+    favouriteRecipies: [{
+      type: String
+    }]
 
   },
   {

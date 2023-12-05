@@ -16,12 +16,9 @@ const {
     getByVitaminB12,
     getOneRecipe
 
-
 } = require('../controllers/edamam-controllers')
 
-
 router.get("/search/dinner", getDinnerByIng)
-
 
 router.get("/search/breakfast", getRecipebreackfastbying)
 
@@ -31,11 +28,9 @@ router.get("/search", getRecipes)
 
 router.get("/multiple", getMultipleIng)
 
-
 router.get("/search/health", getHealthRecipe)
 
 router.get("/search/place", getRecipeByCountry)
-
 
 router.get("/recipes", getRecipebyMeal)
 
@@ -51,18 +46,12 @@ router.get("/recipes/diet", (req, res, next) => {
 
 router.get("/recipes/total-time", getRecipeTime)
 
-
 router.get("/calories", getRecipeCalories)
 
 router.get("/excluding", getRecipeExcluding)
 
 router.get("/vitB12", getByVitaminB12)
 
-
 router.get("/recipes/:id", getOneRecipe)
-
-
-
-
 
 module.exports = router
