@@ -138,15 +138,20 @@ class EdamamService {
         })
     }
 
-    // getRandom(random) {
 
-    //     return this.axiosApp.get('', {
-    //         params: {
-    //             random: random
+    getMultipleFiltering(ingredient, health, mealtype, calories, time) {
+        return this.axiosApp.get('', {
+            params: {
+                q: ingredient,
+                ingr: '1-8',
+                health: health,
+                mealType: mealtype,
+                calories: calories,
+                time: time
+            }
+        })
+    }
 
-    //         }
-    //     })
-    // }
 
 }
 
