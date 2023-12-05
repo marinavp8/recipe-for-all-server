@@ -1,5 +1,4 @@
 const { verifyToken } = require("../middlewares/verifyToken")
-const jwt = require('jsonwebtoken')
 const User = require("../models/User.model")
 const router = require("express").Router()
 
@@ -13,17 +12,15 @@ router.get('/', verifyToken, (req, res, next) => {
 
 })
 
-router.delete('/delete/:id', (req, res, next) => {
+router.delete('/delete/:_id', verifyToken, (req, res, next) => {
 
-    const { id } = req.params
+    const { _id } = req.params
 
     User
-
-        .findByIdAndDelete(id)
-        .then(() => console.log())
+        .findByIdAndDelete(_id)
+        .then(() => res.sendStatus(200))
         .catch(err => next(err))
 
 })
-
 
 module.exports = router
