@@ -35,7 +35,6 @@ router.post('/edit', (req, res, next) => {
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 
-
 })
 
 router.delete('/delete/:_id', (req, res, next) => {
@@ -48,6 +47,5 @@ router.delete('/delete/:_id', (req, res, next) => {
         .catch(err => next(err))
 
 })
-
 
 module.exports = router
