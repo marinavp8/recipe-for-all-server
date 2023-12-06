@@ -79,9 +79,6 @@ userSchema.methods.signToken = function () {
   return authToken
 }
 
-
-
-
 const User = model("User", userSchema)
 
 module.exports = User
