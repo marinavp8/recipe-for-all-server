@@ -140,6 +140,7 @@ class EdamamService {
 
 
     getMultipleFiltering(ingredient, health, mealtype, calories, time) {
+        
         return this.axiosApp.get('', {
             params: {
                 q: ingredient,

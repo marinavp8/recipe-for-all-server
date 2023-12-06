@@ -54,14 +54,14 @@ router.get("/vitB12", getByVitaminB12)
 
 router.get("/recipes/:id", getOneRecipe)
 
-// router.get("/explore", (req, res, next) => {
+router.get("/explore", (req, res, next) => {
 
-//     const { ingredient, health, mealtype, calories , time} = req.query
+    const { ingredient, health, mealtype, calories , time} = req.query
 
-//     edamamService
-//         .getMultipleFiltering(ingredient, health, mealtype, calories, time)
-//         .then((response) => res.json(response.data))
-//         .catch(err => next(err))
-// })
+    edamamService
+        .getMultipleFiltering(ingredient, health, mealtype, calories, time)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+})
 
 module.exports = router

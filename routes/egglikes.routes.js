@@ -1,27 +1,36 @@
 const { response } = require("express")
 const User = require("../models/User.model")
 const router = require("./users.routes")
+const { verifyToken } = require("../middlewares/verifyToken")
 
 
-router.post('/', (req, res, next) => {
-    console.log(req.body, req.params, req.query)
+router.put('/', verifyToken, (req, res, next) => {
 
-    const { userId, recipeId } = req.body
+    const { recipeId } = req.body
+    const { _id: userId } = req.payload
 
     User
         .findById(userId)
         .then(user => {
 
             if (!user.favouriteRecipies.includes(recipeId)) {
-                return user.findById(userId, { $push: { favouriteRecipies: recipeId } })
+                return User.findOneAndUpdate(
+                    { _id: userId },
+                    { $push: { favouriteRecipies: recipeId } },
+                    { new: true },
+                    console.log(user))
             }
             else {
-                return user.findById(userId, { $pull: { favouriteRecipies: recipeId } })
+                return User.findOneAndUpdate(
+                    { _id: userId },
+                    { $pull: { favouriteRecipies: recipeId } },
+                    { new: true })
 
             }
 
+
         })
-        .then(() => console.log(response.data))
+        .then(() => res.sendStatus(200))
         .catch(err => next(err))
 
 })
