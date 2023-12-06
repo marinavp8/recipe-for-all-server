@@ -70,16 +70,16 @@ router.put("/updateMenu/:_id/:day", (req, res, next) => {
         { arrayFilters: [{ "elem.day": day }], new: true }
     )
         .then(updatedMenu => {
-            res.json(updatedMenu);
+            res.json(updatedMenu)
         })
-        .catch(err => next(err));
+        .catch(err => next(err))
 })
 
 
 // MEJORAR NOMENCLATURA DE REALID
 router.put("/updateMenuLunch/:_id/:day", (req, res, next) => {
     const { _id: menuId, day } = req.params
-    const { realId } = req.body;
+    const { realId } = req.body
 
     Menu.findByIdAndUpdate(
         menuId,
@@ -87,14 +87,14 @@ router.put("/updateMenuLunch/:_id/:day", (req, res, next) => {
         { arrayFilters: [{ "elem.day": day }], new: true }
     )
         .then(updatedMenu => {
-            res.json(updatedMenu);
+            res.json(updatedMenu)
         })
-        .catch(err => next(err));
+        .catch(err => next(err))
 })
 
 router.put("/updateMenuDinner/:_id/:day", (req, res, next) => {
     const { _id: menuId, day } = req.params
-    const { realId } = req.body;
+    const { realId } = req.body
 
     Menu.findByIdAndUpdate(
         menuId,
@@ -102,19 +102,19 @@ router.put("/updateMenuDinner/:_id/:day", (req, res, next) => {
         { arrayFilters: [{ "elem.day": day }], new: true }
     )
         .then(updatedMenu => {
-            res.json(updatedMenu);
+            res.json(updatedMenu)
         })
-        .catch(err => next(err));
+        .catch(err => next(err))
 });
 
 router.delete("/deleteMenu/:id", (req, res, next) => {
 
-    const { _id } = req.params;
+    const { _id } = req.params
 
     Menu
         .findOneAndDelete(_id)
         .then(() => res.sendStatus(201))
-        .catch(err => next(err));
+        .catch(err => next(err))
 })
 
 module.exports = router

@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const edamamService = require("../services/edamam.services")
 const {
     getDinnerByIng,

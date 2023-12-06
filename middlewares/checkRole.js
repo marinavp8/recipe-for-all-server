@@ -1,13 +1,22 @@
+const User = require("../models/User.model")
 
-const checkRole = (...admittedRoles) => (req, res, next) => {
+const checkRole = (req, res, next) => {
 
-    const { role } = req.payload
+    const { _id: userId } = req.payload
 
-    if (admittedRoles.includes(role)) {
-        next()
-    } else {
-        res.redirect('/inicio-sesion')
-    }
+    User
+        .findById(userId)
+        .select("role")
+        .then((user) => {
+            if (user.role !== "ADMIN") {
+                res.status(500).json("Admin role required")
+            } else {
+                next()
+            }
+        })
+        .catch((error) => {
+            next(error)
+        })
 }
 
 module.exports = { checkRole }
