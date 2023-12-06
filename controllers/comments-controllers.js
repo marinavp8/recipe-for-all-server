@@ -4,10 +4,10 @@ const Comment = require('../models/Comments.model')
 const sendComment = (req, res, next) => {
 
     const { comment, recipeCommented } = req.body
-    const ownerId = req.payload._id
+    const { _id: owner } = req.payload
 
     Comment
-        .create({ comment, owner: ownerId, recipeCommented })
+        .create({ comment, owner, recipeCommented })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 }
