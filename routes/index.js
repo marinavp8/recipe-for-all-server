@@ -1,8 +1,6 @@
 
 module.exports = app => {
 
-  // TODO: DESACOPLAR CONTROLADORES
-
   const menuRoutes = require("./menu.routes")
   app.use("/api/menu", menuRoutes)
 
