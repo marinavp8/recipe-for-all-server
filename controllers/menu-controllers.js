@@ -1,6 +1,8 @@
 
 const Menu = require("../models/Menu.model")
 
+// TODO: REVISAR OPCIONES DE APROVECHAMIENTO DE SELECT Y SORT
+
 const getMenus = (req, res, next) => {
     const { owner } = req.params
     Menu
@@ -23,10 +25,9 @@ const createMenu = (req, res, next) => {
 
     const { body: menu } = req
     const { _id: owner } = req.payload
-    menu.owner = owner
 
     Menu
-        .create(menu)
+        .create({ ...menu, owner })
         .then((response) => res.json(response))
         .catch(err => next(err))
 
@@ -90,7 +91,6 @@ const updateDinner = (req, res, next) => {
 const deleteMenu = (req, res, next) => {
 
     const { _id } = req.params
-    console.log(_id)
 
     Menu
         .findOneAndDelete(_id)

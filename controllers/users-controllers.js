@@ -6,7 +6,7 @@ const allUsers = (req, res, next) => {
 
     User
         .find()
-        .select({ username: 1, avatar: 1, _id: 1 })
+        .select({ username: 1, avatar: 1 })
         .then(response => res.json(response))
         .catch(err => next(err))
 
@@ -18,19 +18,18 @@ const deleteUsers = (req, res, next) => {
 
     User
         .findByIdAndDelete(_id)
-        .then(() => res.json('User deleted succesfully'))
+        .then(() => res.sendStatus(202))
         .catch(err => next(err))
-
 }
 
-const findById =  (req,res, next) => {
+const findById = (req, res, next) => {
 
-    const {_id} = req.params
+    const { _id } = req.params
 
     User
-    .findById(_id)
-    .then(response => res.json(response))
-    .catch(err => next(err))
+        .findById(_id)
+        .then(response => res.json(response))
+        .catch(err => next(err))
 
 }
 
