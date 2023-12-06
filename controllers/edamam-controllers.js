@@ -130,6 +130,16 @@ const getOneRecipe = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getMultipleFiltering = (req,res,next) => {
+    
+    const { ingredient, health, mealtype, calories , time} = req.query
+
+    edamamService
+        .getMultipleFiltering(ingredient, health, mealtype, calories, time)
+        .then((response) => res.json(response.data))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getDinnerByIng,
     getRecipebreackfastbying,
@@ -143,5 +153,6 @@ module.exports = {
     getRecipeCalories,
     getRecipeExcluding,
     getByVitaminB12,
-    getOneRecipe
+    getOneRecipe,
+    getMultipleFiltering
 }

@@ -2,6 +2,7 @@ const { verifyToken } = require("../middlewares/verifyToken")
 const User = require("../models/User.model")
 const router = require("express").Router()
 
+
 router.get('/', verifyToken, (req, res, next) => {
 
     User
@@ -20,6 +21,17 @@ router.delete('/delete/:_id', verifyToken, (req, res, next) => {
         .findByIdAndDelete(_id)
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
+
+})
+
+router.get('/user/:_id', (req,res, next) => {
+
+    const {_id} = req.params
+
+    User
+    .findById(_id)
+    .then(response => res.json(response))
+    .catch(err => next(err))
 
 })
 
