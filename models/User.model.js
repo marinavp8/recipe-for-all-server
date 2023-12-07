@@ -43,6 +43,10 @@ const userSchema = new Schema(
 
     favouriteRecipies: [{
       type: String
+    }],
+
+    myList: [{
+      type: String
     }]
 
   },

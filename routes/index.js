@@ -22,4 +22,7 @@ module.exports = app => {
   const usersRoutes = require("./users.routes")
   app.use("/users", usersRoutes)
 
+  const listRoutes = require('./list.routes')
+  app.use('/list', listRoutes)
 }
+
