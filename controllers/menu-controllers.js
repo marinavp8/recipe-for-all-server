@@ -1,7 +1,6 @@
 
 const Menu = require("../models/Menu.model")
 
-// TODO: REVISAR OPCIONES DE APROVECHAMIENTO DE SELECT Y SORT
 
 const getMenus = (req, res, next) => {
     const { owner } = req.params

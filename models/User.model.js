@@ -31,7 +31,6 @@ const userSchema = new Schema(
 
     avatar: {
       type: String,
-      // required: [true, 'Profile image is required.'],
       default: "./images/pepinillo.png"
     },
 

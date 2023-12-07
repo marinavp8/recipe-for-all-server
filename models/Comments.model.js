@@ -13,7 +13,7 @@ const commentSchema = new Schema(
         },
         comment: {
             type: String,
-            maxlength: [50, 'Máximo de 50 carácteres']
+            maxlength: [50, 'Max of 50 characters']
         },
         created: {
             type: Date,

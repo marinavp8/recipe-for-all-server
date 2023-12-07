@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const Menu = require('../models/Menu.model')
 const { verifyToken } = require('../middlewares/verifyToken')
 const { getMenus, getId, createMenu, editName, updateBreakfast, updateLunch, updateDinner, deleteMenu } = require('../controllers/menu-controllers')
 
